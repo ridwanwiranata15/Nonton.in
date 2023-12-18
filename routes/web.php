@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Member\RegisterController;
+use App\Http\Controllers\Member\DashboardController;
 use App\Http\Controllers\Member\LoginController as MemberLoginController;
 use App\Models\Transaction;
 use Illuminate\Auth\Events\Login;
@@ -45,5 +46,9 @@ Route::view('/', 'index');
 Route::get('/register', [RegisterController::class, 'index'])->name('member.register');
 Route::post('/storeregister', [RegisterController::class, 'store'])->name('member.store.register');
 Route::get('member/login', [MemberLoginController::class, 'index'])->name('member.login');
-Route::posh('member/login', [MemberLoginController::class, 'auth'])->name('member.login.auth');
+Route::post('member/login', [MemberLoginController::class, 'auth'])->name('member.login.auth');
+
+Route::group(['prefix' => 'member'], function(){
+    Route::get('/', [DashboardController::class, 'index'])->name('member.dashboard');
+});
 

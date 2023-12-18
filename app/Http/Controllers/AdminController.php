@@ -27,34 +27,35 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         $data = $request->except('_token');
-        $request->validate([
-            'title' => 'required',
-            'trailer' => 'required',
-            'movie' => 'required',
-            'cast' => 'required',
-            'category' => 'required',
-            'small_thumbnail' => 'required',
-            'large_thumbnail' => 'required',
-            'release_date' => 'required',
-            'about' => 'required',
-            'duration' => 'required',
-            'featured' => 'required'
 
+        $file_smallthumbnail = $request->file('small_thumbnail');
+        $path_smallthumbnail = time().'_'.$request->title.''.$file_smallthumbnail->getClientOriginalExtension();
+        Storage::disk('local')->put('/public/'.$path_smallthumbnail, file_get_contents($file_smallthumbnail));
+
+        $file_largethumbnail = $request->file('large_thumbnail');
+        $path_largethumbnail = time().'_'.$request->name.'.'.$file_largethumbnail->getClientOriginalExtension();
+        Storage::disk('local')->put('/public/'.$path_largethumbnail, file_get_contents($file_largethumbnail));
+
+        $check = Movie::create([
+            'title' => $request->title,
+            'trailer' => $request->trailer,
+            'movie' => $request->movie,
+            'cast' => $request->cast,
+            'category' => $request->category,
+            'small_thumbnail' => $path_smallthumbnail,
+            'large_thumbnail' => $path_largethumbnail,
+            'release_date' => $request->release_date,
+            'about' => $request->about,
+            'duration' => $request->duration,
+            'featured' => $request->featured
         ]);
+        if($check)
+        {
+            return redirect()->route('AdminMovie');
+        }else{
+            return Redirect::back();
+        }
 
-        $SmallThumbnail = $request->small_thumbnail;
-        $LargeThumbnail = $request->large_thumbnail;
-
-        $OriginalSmallThumbnailName = Str::random(10).$SmallThumbnail->getClientOriginalName();
-        $OriginalLargeThumbnailName = Str::random(10).$LargeThumbnail->getClientOriginalName();
-
-        $SmallThumbnail->storeAs('public/thumbnail', $OriginalSmallThumbnailName);
-        $LargeThumbnail->storeAs('public/thumbnail', $OriginalLargeThumbnailName);
-
-        $data['large_thumbnail'] = $OriginalLargeThumbnailName;
-        $data['small_thumbnail'] = $OriginalSmallThumbnailName;
-
-        Movie::create($data);
 
     }
     public function update(Request $request, $id)

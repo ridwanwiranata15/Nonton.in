@@ -34,15 +34,10 @@
                     <tr>
                         <th>Id</th>
                         <th>{{ $movie->title }}</th>
-                        <th><img src="{{ asset('storage/thumbnail/'.$movie->small_thumbnail)}}" alt="gambar" width="100px" height="100px"></th>
-                        <th><img src="{{ asset('storage/thumbnail/'.$movie->large_thumbnail)}}" alt="gambar" width="100px"></th>
+                        <th><img src="{{ url('storage/thumbnail/'.$movie->small_thumbnail) }}" alt="gambar" width="100px" height="100px"></th>
+                        <th><img src="{{ url('storage/thumbnail/'.$movie->large_thumbnail) }}" alt="gambar" width="100px"></th>
                         <th>{{ $movie->category }}</th>
                         <th>{{ $movie->cast }}</th>
-                        {{--  <th>{{ $movie->movie }}</th>
-                        <th>{{ $movie->release_date }}</th>
-                        <th>{{ $movie->about }}</th>
-                        <th>{{ $movie->duration }}</th>
-                        <th>{{ $movie->featured }}</th>  --}}
                         <th>
                             <a href="{{ route('admin.movie.edit', $movie->id) }}" class="btn btn-secondary">
                                 <i class="fas fa-edit"></i>
