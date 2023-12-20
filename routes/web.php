@@ -6,7 +6,9 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Member\RegisterController;
 use App\Http\Controllers\Member\DashboardController;
+use App\Http\Controllers\Member\MovieController;
 use App\Http\Controllers\Member\LoginController as MemberLoginController;
+use App\Http\Controllers\Member\PricingController;
 use App\Models\Transaction;
 use Illuminate\Auth\Events\Login;
 
@@ -48,7 +50,9 @@ Route::post('/storeregister', [RegisterController::class, 'store'])->name('membe
 Route::get('member/login', [MemberLoginController::class, 'index'])->name('member.login');
 Route::post('member/login', [MemberLoginController::class, 'auth'])->name('member.login.auth');
 
-Route::group(['prefix' => 'member'], function(){
+Route::group(['prefix' => 'member', 'middleware' => ['auth']], function(){
     Route::get('/', [DashboardController::class, 'index'])->name('member.dashboard');
+    Route::get('movie/{id}', [MovieController::class, 'show'])->name('member.movie.detail');
+    Route::get('/logout', [MemberLoginController::class, 'logout'])->name('member.logout');
 });
-
+Route::get('pricing', [PricingController::class, 'index'])->name('pricing');

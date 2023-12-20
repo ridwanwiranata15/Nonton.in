@@ -50,22 +50,19 @@
 
                     <!-- Form login -->
                     <section class="w-11/12 max-w-[460px]">
-                        <form action="" class="mt-[70px] flex flex-col bg-white p-[30px] rounded-2xl gap-6">
-                            <div class="form-input flex flex-col gap-3">
-                                <label for="name" class="text-base font-medium text-stream-dark">Name</label>
-                                <input type="text"
-                                    class="rounded-full py-3 pr-3 pl-6 text-stream-dark placeholder:text-stream-gray placeholder:font-normal font-medium outline outline-stream-gray outline-1 text-base focus:outline-indigo-600 input-stream"
-                                    placeholder="Your complete name" />
-                            </div>
+                        <form action="{{ route('member.login.auth') }}" class="mt-[70px] flex flex-col bg-white p-[30px] rounded-2xl gap-6" method="POST">
+                            @csrf
                             <div class="form-input flex flex-col gap-3">
                                 <label for="email" class="text-base font-medium text-stream-dark">Email Address</label>
                                 <input type="email"
+                                    name="email"
                                     class="rounded-full py-3 pr-3 pl-6 text-stream-dark placeholder:text-stream-gray placeholder:font-normal font-medium outline outline-stream-gray outline-1 text-base focus:outline-indigo-600 input-stream"
                                     placeholder="Your email address" />
                             </div>
                             <div class="form-input flex flex-col gap-3">
                                 <label for="password" class="text-base font-medium text-stream-dark">Password</label>
                                 <input type="password"
+                                    name="password"
                                     class="rounded-full py-3 pr-3 pl-6 text-stream-dark placeholder:text-stream-gray placeholder:font-normal font-medium outline-stream-gray outline outline-1 text-base focus:outline-indigo-600 input-stream"
                                     placeholder="Your password" />
                             </div>
