@@ -17,4 +17,5 @@ class PricingController extends Controller
             // 'gold' => $goldPackage
         ]);
     }
+   
 }

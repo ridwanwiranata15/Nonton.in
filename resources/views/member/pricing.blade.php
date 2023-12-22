@@ -130,14 +130,19 @@
                                     <img src="{{ asset('stream/assets/images/ic_check.svg')}}" alt="stream" />
                                 </div>
                             </div>
-
-                            <a href="success_page.html"
+                        
+                            
+                            <form action="{{route('member.transaction.store')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="package_id" value="{{$standard->id}}">
+                            <button
                                 class="mt-10 py-3 block outline outline-1 outline-stream-gray rounded-full text-center">
                                 <span class="text-stream-gray text-base font-normal">
                                     Subscribe
                                     Now
                                 </span>
-                            </a>
+                            </button>
+                            </form>
                         </div>
                         <!-- Card -->
                         <div class="pricing-card">
