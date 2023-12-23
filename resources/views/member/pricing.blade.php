@@ -150,10 +150,10 @@
                                 Gold
                             </p>
                             <div class="text-3xl text-stream-dark font-semibold my-1">
-                                Rp 699.000
+                                Rp 199.000
                             </div>
                             <p class="text-sm text-stream-gray">
-                                /bulan
+                                /tahun
                             </p>
                             <hr class="my-[30px]">
 
@@ -207,8 +207,8 @@
                 </div>
             </div>
         </div>
+    
     </div>
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="assets/script/script.js"></script>
